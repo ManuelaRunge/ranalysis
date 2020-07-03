@@ -8,7 +8,7 @@
 #' @param  WideToLong  change format of results dataset from wide to long format 
 #' 
 #'
-f_aggrDat <- function(dataframe, groupVars, valueVar, WideToLong=FALSE){
+ f_aggrDat <- function(dataframe, groupVars, valueVar, WideToLong=FALSE){
 
  dataframe <- as.data.frame(dataframe)
  dataframe$tempvar <- dataframe[,colnames(dataframe)==valueVar]
@@ -53,6 +53,11 @@ return(datAggr)
 #' WideToLong = transfrom data to long format, so that statistics are in one column instead of spread over rows
 
  f_weighted.aggrDat <- function(dataframe, groupVars, valueVar, weightVar, WideToLong=FALSE){
+ # dataframe = dataframe to aggregate (new datafram will be created)
+ # groupVars = variables to aggregate at 
+ # valueVar = variable to aggregate 
+ # WideToLong = transfrom data to long format, 
+ #              so that statistics are in one column instead of spread over rows
  
  dataframe <- as.data.frame(dataframe)
  dataframe$tempvar <- dataframe[,colnames(dataframe)==valueVar]
@@ -63,9 +68,9 @@ return(datAggr)
 			dplyr::summarise(
 					 min.val 	= min(tempvar, na.rm = TRUE),
 					 max.val	= max(tempvar, na.rm = TRUE),
-					 mean.val 	= wt.mean(tempvar, w),
+					 mean.val 	= weighted.mean(tempvar, w),
 					 median.val	= weighted.median(tempvar, w),
-					 sd.val		= wt.sd(tempvar,w),
+					 sd.val		= sqrt(sum(w * (tempvar - mean.val)^2)),
 					 n.val 		= n(),										 
 					 q25		= weighted.quantile(tempvar,w, probs=0.25),
 					 q75		= weighted.quantile(tempvar,w, probs=0.75),
