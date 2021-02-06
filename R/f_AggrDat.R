@@ -1,3 +1,4 @@
+#' f_aggrDat
 #' Aggregate a local data frame and returning multiple summary statistics
 #'
 #' aggregates a single variable of a dataframe and returns summary statistics including CI's
@@ -43,7 +44,7 @@ f_aggrDat <- function(dataframe, groupVars, valueVar, WideToLong=FALSE){
 return(datAggr)
 }
 
-#'
+#' f_weighted.aggrDat
 #'
 #'
 #' dataframe = dataframe to aggregate (new datafram will be created)
@@ -52,7 +53,7 @@ return(datAggr)
 #' weightVar = weighting variable  
 #' WideToLong = transfrom data to long format, so that statistics are in one column instead of spread over rows
 
- f_weighted.aggrDat <- function(dataframe, groupVars, valueVar, weightVar, WideToLong=FALSE){
+f_weighted.aggrDat <- function(dataframe, groupVars, valueVar, weightVar, WideToLong=FALSE){
  
  dataframe <- as.data.frame(dataframe)
  dataframe$tempvar <- dataframe[,colnames(dataframe)==valueVar]

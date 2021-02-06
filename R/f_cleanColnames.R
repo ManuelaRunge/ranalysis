@@ -3,6 +3,7 @@
 #' Code adapted from stackoverflow 
 #' https://stackoverflow.com/questions/20495598/replace-accented-characters-in-r-with-non-accented-counterpart-utf-8-encoding
 #' 
+#' @param x character string or vector from which special characters should be removed
 #' 
 f_cleanColnames <- function(x){
 

@@ -1,7 +1,13 @@
-#'  f_compareNames
+#' f_compareNames
 #' 
+#' @description Comparing two character strings, does not return an objects but prints non-matches to the console
 #' 
+#' @param A
+#' @param B
+#' @param showNames c("none","both","AB", "BA")
 #' 
+#' @example 
+#' f_compareNames(A=c("Hello","beautiful","world","!"), B=c("Hello","amazing","world"), showNames="both")
 #' 
 f_compareNames <- function(A, B, showNames="none"){
   A = unique(as.character(A))
